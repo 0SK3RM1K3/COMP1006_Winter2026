@@ -1,19 +1,20 @@
 <?php 
 declare(strict_types=1);
 
+
 $host = "localhost";//host name
-$db = "week_two";//database name
+$db = "lab1";//database name
 $user = "root";//username
 $password = "";//password
 
 //points to the database
 $dsn = "mysql:host=$host;dbname=$db";
 
-//try to connect, if connected echo good job!
+//try to connect, if connected echo yay!
 try{
     $pdo = new PDO ($dsn, $user, $password);
     $pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-    echo "<p> Good Job! It worked! </p>";
+    echo "<p> YAY CONNECTED! </p>";
 }
 //what happens if there is an error connecting
 catch(Exception $e){
