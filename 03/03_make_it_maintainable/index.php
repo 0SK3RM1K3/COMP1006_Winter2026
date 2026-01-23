@@ -11,15 +11,18 @@
      aplication through varying files. Ive learned that this is quite a handy trick and much more organized making for
      easy editing.
 */
-$items = ["Home", "About", "Contact"];
-require "header.php";
+$items = ["Home", "About", "Contact"];//variable list
+require "header.php";//header separated into seperate file
 ?>
+
+<!-- php generated list -->
 <ul>
 <?php foreach ($items as $item): ?>
     <li><?= $item ?></li>
 <?php endforeach; ?>
 </ul>
+
 <?php
-require "footer.php";
+require "footer.php";//footer separated into seperate file
 ?>
 
