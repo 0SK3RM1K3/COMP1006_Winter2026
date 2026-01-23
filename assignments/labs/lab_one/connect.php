@@ -17,6 +17,6 @@ try{
     echo "<p> YAY CONNECTED! </p>";
 }
 //what happens if there is an error connecting
-catch(Exception $e){
+catch(PDOException $e){
     die("Database connection failed: " . $e->getMessage());
 }
