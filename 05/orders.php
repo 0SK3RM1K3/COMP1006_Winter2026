@@ -21,4 +21,8 @@ require "includes/connect.php";
   </p>
 </main>
 
+<<<<<<< HEAD
 <?php require "includes/footer.php"; ?>
+=======
+<?php require "includes/footer.php"; ?>
+>>>>>>> 1a34152f2636dd2ad897ed74d8dd6a77e49b6821
