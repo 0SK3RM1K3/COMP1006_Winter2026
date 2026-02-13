@@ -76,32 +76,6 @@ if (!empty($errors)) {
 
 /*4*/
 
-<<<<<<< HEAD
-//build our query using name place holders
-
-$sql = "INSERT INTO orders (first_name, last_name, phone, address, email, comments) VALUES (:first_name, :last_name, :phone, :address, :email, :comments)";
-
-//prepare the query
-
-$stmt = $pdo->prepare($sql);
-
-//map the named placeholder to the user data/actual data
-
-$stmt->bindParam(':first_name', $firstName);
-$stmt->bindParam(':last_name', $lastName);
-$stmt->bindParam(':phone', $phone);
-$stmt->bindParam(':email', $email);
-$stmt->bindParam(':address', $address);
-$stmt->bindParam(':comments', $comments);
-
-//execute query
-
-$stmt->execute();
-
-//close the connection
-$pdo = null;
-
-=======
 //build our query using named placeholders 
 
 $sql = "INSERT INTO orders (first_name, last_name, phone, address, email, comments) VALUES (:first_name, :last_name, :phone, :address, :email, :comments)"; 
@@ -124,7 +98,6 @@ $stmt->execute();
 
 //close the connection 
 $pdo = null; 
->>>>>>> 1a34152f2636dd2ad897ed74d8dd6a77e49b6821
 ?>
 <? require "includes/header.php"; ?> 
 <div class="alert alert-success">
@@ -135,8 +108,4 @@ $pdo = null;
     </p>
 </div>
 
-<<<<<<< HEAD
 <?php require "includes/footer.php"; ?>
-=======
-<?php require "includes/footer.php"; ?>
->>>>>>> 1a34152f2636dd2ad897ed74d8dd6a77e49b6821
