@@ -20,7 +20,7 @@
     </fieldset>
 
     <!-- Order Details -->
-    <fieldset>
+    <!-- <fieldset>
       <legend>Order Details</legend>
 
       <p>
@@ -89,7 +89,7 @@
         </tbody>
       </table>
 
-    </fieldset>
+    </fieldset>-->
 
     <fieldset>
       <legend>Additional Comments</legend>
@@ -99,7 +99,7 @@
         <textarea id="comments" name="comments" rows="4"
           placeholder="Allergies, delivery instructions, custom messages..."></textarea>
       </p>
-    </fieldset>
+    </fieldset> 
 
     <p>
       <button type="submit">Place Order</button>
