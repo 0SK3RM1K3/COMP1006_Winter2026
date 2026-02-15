@@ -99,7 +99,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     //execute statement
     $stmt->execute();
 
-    header("Location: orders.php");
+    header("Location: teamList.php");
         exit;
 }
 
