@@ -15,7 +15,7 @@
                 <input type="tel" id="phone" name="phone" placeholder="555-123-4567" class="form-control" required>
                 <label for="email" class="form-label">Email</label>
                 <input type="email" id="email" name="email" class="form-control" required>
-                <label for="position" class="form-label">Position(LW,C,RW,LD,RD)</label>
+                <label for="position" class="form-label">Position(LW,C,RW,LD,R,G)</label>
                 <input type="text" id="position" name="position" class="form-control" required>
                 <label for="team_name" class="form-label">Team Name</label>
                 <input type="text" id="team_name" name="team_name" class="form-control" required>
