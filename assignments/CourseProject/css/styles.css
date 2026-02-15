@@ -1,6 +1,4 @@
-/* ============================
-   Simple Reset / Base Styles
-   ============================ */
+/*I used a combination of bootstrap and your styling choices to create a simple but nice looking form*/
 
 /* Box sizing reset */
 *,
@@ -13,7 +11,6 @@
 body,
 h1,
 h2,
-h3,
 p,
 fieldset,
 legend {
@@ -27,9 +24,7 @@ body {
     background-color: #fafafa;
 }
 
-/* ============================
-   Layout
-   ============================ */
+/* Layout */
 
 main,
 header nav, 
@@ -39,23 +34,19 @@ footer {
     padding: 1.5rem;
 }
 
-/* ============================
-   Logo / Heading
-   ============================ */
+/*Logo / Heading*/
 
 h1 {
     text-align: center;
     margin-bottom: 1.5rem;
 }
 
-h1 img {
+img {
     max-width: 220px;
     height: auto;
 }
 
-/* ============================
-   Form Elements
-   ============================ */
+/*Form Elements*/
 
 fieldset {
     border: 1px solid #ddd;
@@ -73,43 +64,23 @@ label {
 }
 
 input,
-select,
-textarea,
 button {
     display:block;
     font-family: inherit;
     font-size: 1rem;
 }
 
-input,
-select,
-textarea {
+input {
     width: 100%;
     padding: 0.4rem;
     margin-top: 0.25rem;
 }
 
-textarea {
-    resize: vertical;
-}
-
-/* ============================
-   Navigation
-   ============================ */
+/*Navigation*/
 
 nav {
     margin-bottom: 1.5rem;
-    background-color: #333;
-}
-
-nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-
-    display: flex;
-    gap: 1.25rem;
-    justify-content: center;
+    background-color: #2153dc;
 }
 
 nav a {
@@ -124,11 +95,9 @@ nav a:focus {
     text-decoration: underline;
 }
 
-/* ============================
-  Footer
-   ============================ */
+/*Footer*/
 
    footer {
-    background-color: #000; 
+    background-color: #2153dc; 
     color: #FFF; 
    }
