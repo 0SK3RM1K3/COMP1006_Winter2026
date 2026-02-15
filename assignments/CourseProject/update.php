@@ -11,9 +11,7 @@ if (!isset($_GET['id'])) {
 $playerId = $_GET['id'];
 
 /*only run if post is used*/
-if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    die('Invalid request');
-}else{
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     /*Sanitize input*/
     $firstName = trim(filter_input(INPUT_POST, 'first_name', FILTER_SANITIZE_SPECIAL_CHARS));
@@ -77,21 +75,14 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     }
 
     //make sql query
-    $sql = "
-        INSERT INTO players (
-            first_name,
-            last_name,
-            phone,
-            email,
-            position,
-            team_name
-        ) VALUES (
-            :first_name,
-            :last_name,
-            :phone,
-            :email,
-            :position,
-            :team_name)";
+    $sql = "UPDATE players SET
+        first_name = :first_name,
+        last_name = :last_name,
+        phone = :phone,
+        email = :email,
+        position = :position,
+        team_name = :team_name
+    WHERE player_id = :player_id";
 
     //prepare statement
     $stmt = $pdo->prepare($sql);
@@ -103,6 +94,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     $stmt->bindParam(':email', $email);
     $stmt->bindParam(':position', $position);
     $stmt->bindParam(':team_name', $teamName);
+    $stmt->bindParam(':player_id', $playerId);
 
     //execute statement
     $stmt->execute();
@@ -111,5 +103,93 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
         exit;
 }
 
+//load existing data into form to be adjusted
+$sql = "SELECT * FROM players WHERE player_id = :player_id";
+$stmt = $pdo->prepare($sql);
+$stmt->bindParam(':player_id', $playerId);
+$stmt->execute();
 
+$player = $stmt->fetch();
+
+if (!$player) {
+  die("Player not found.");
+}
+?>
+
+<main class="container mt-4">
+  <h2>Update Player ID # <?= htmlspecialchars($player['player_id']); ?></h2>
+
+  <?php if (!empty($error)): ?>
+    <p class="text-danger"><?= htmlspecialchars($error); ?></p>
+  <?php endif; ?>
+
+  <form method="post">
+
+    <h4 class="mt-3">Player Information</h4>
+
+    <label class="form-label">First Name</label>
+    <input
+      type="text"
+      name="first_name"
+      class="form-control mb-3"
+      value="<?= htmlspecialchars($player['first_name']); ?>"
+      required
+    >
+
+    <label class="form-label">Last Name</label>
+    <input
+      type="text"
+      name="last_name"
+      class="form-control mb-3"
+      value="<?= htmlspecialchars($player['last_name']); ?>"
+      required
+    >
+
+    <label class="form-label">Phone</label>
+    <input
+      type="tel"
+      name="phone"
+      class="form-control mb-3"
+      value="<?= htmlspecialchars($player['phone']); ?>"
+      required
+    >
+
+    <label class="form-label">Email</label>
+    <input
+      type="email"
+      name="email"
+      class="form-control mb-4"
+      value="<?= htmlspecialchars($player['email']); ?>"
+      required
+    >
+
+    <label class="form-label">Position</label>
+    <input
+      type="text"
+      name="position"
+      class="form-control mb-3"
+      value="<?= htmlspecialchars($player['position']); ?>"
+      required
+    >
+
+    <label class="form-label">Team Name</label>
+    <input
+      type="text"
+      name="team_name"
+      class="form-control mb-3"
+      value="<?= htmlspecialchars($player['team_name']); ?>"
+      required
+    >
+
+    <button class="btn btn-primary">Save Changes</button>
+    <a href="teamList.php" class="btn btn-secondary">Cancel</a>
+
+  </form>
+</main>
+
+<?php require "includes/footer.php"; ?>
+
+</body>
+
+</html>
 
