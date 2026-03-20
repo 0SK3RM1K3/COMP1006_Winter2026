@@ -41,6 +41,52 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     //Add Code Here 
+    //check wheather a file was uploaded
+
+    if(isset($_FILES['product_image']) && $_FILES['product_image']['error'] !== UPLOAD_ERR_NO_FILE) {
+
+        //make sure upload completed succefully
+        if($_FILES['product_image']['error'] !== UPLOAD_ERR_OK) {
+            $errors[] = "There was a problem uploading your file!";
+        }
+        else {
+            //only allow a few file types
+            $allowedTypes = ['image/jpeg', 'image/png', 'image/webp', 'image/jpg'];
+
+            //detect the real MIME type of file
+            $detectedType = mime_content_type($_FILES['product_image']['tmp_name']);
+
+            if(!in_array($detectedType, $allowedTypes, true)) {
+
+                $errors[] = "Only JPG, PNG and WebP allowed!";
+
+            }
+            else {
+                //build file name and move it to where we want it to go
+                //get the file extension
+                $extension = pathinfo($_FILES['product_image']['name'], PATHINFO_EXTENSION);
+
+                //creat a unique filename so uploaded files don't overwrite
+                $safeFilename = uniqid('product_', true) . '.' . strtolower($extension);
+
+                //build the full server path where file will be stored
+                $destination = __DIR__ . '/uploads/' . $safeFilename;
+
+                if(move_uploaded_file($_FILES['product_image']['tmp_name'], $destination)) {
+
+                    //save the relative path to the database
+                    $imagePath = 'uploads/' . $safeFilename;
+
+                }
+                else {
+                    $errors[] = "Image upload failed!";
+                }
+            }
+        }
+
+    }
+
+
 
     // If there are no errors, insert the product into the database
     if (empty($errors)) {
@@ -122,4 +168,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </form>
 </main>
 
-<?php require "footer.php"; ?>
+<?php require "includes/footer.php"; ?>
