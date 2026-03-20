@@ -26,8 +26,4 @@ $stmt->execute();
 
 // Redirect back to admin list
 header("Location: orders.php");
-<<<<<<< HEAD
 exit;
-=======
-exit;
->>>>>>> f18205ce1060b62527b55432e7ff5b0df752dc1d

@@ -1,8 +1,13 @@
 <?php
 // Start or resume the session.
+<<<<<<< HEAD
 // Sessions allow us to store login information across multiple pages.
 session_start();
 
+=======
+session_start( );
+// Sessions allow us to store login information across multiple pages.
+>>>>>>> f18205ce1060b62527b55432e7ff5b0df752dc1d
 require "includes/connect.php";
 require "includes/header.php";
 
@@ -30,6 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // SQL query to find a user with the matching username OR email
         // LIMIT 1 ensures only one user record is returned
+<<<<<<< HEAD
         $sql = "SELECT id, username, email, password FROM users WHERE username = :login OR email = :login LIMIT 1";
 
         // Prepare the SQL statement using PDO
@@ -43,6 +49,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Fetch the matching user as an associative array
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
+=======
+        $sql = "SELECT id, username, email, password FROM users WHERE username = :login OR email = :login LIMIT 1"; 
+
+        // Prepare the SQL statement using PDO
+        $stmt = $pdo->prepare($sql); 
+
+        // Bind the user input to the :login parameter
+        $stmt->bindParam(':login', $usernameOrEmail); 
+        
+        // Execute the query
+        $stmt->execute(); 
+
+        // Fetch the matching user as an associative array
+        $user = $stmt->fetch(PDO::FETCH_ASSOC); 
+>>>>>>> f18205ce1060b62527b55432e7ff5b0df752dc1d
 
         // Check two conditions:
         // 1. A user record was found
@@ -52,6 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Regenerate the session ID for security
             // This helps prevent session fixation attacks
             session_regenerate_id(true);
+<<<<<<< HEAD
 
             // Store user information in session variables
             // These variables indicate the user is now logged in
@@ -63,11 +85,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             // Stop the script immediately after redirecting
         exit();
+=======
+           
+            // Store user information in session variables
+            // These variables indicate the user is now logged in
+            $_SESSION['user_id'] = $user['id']; 
+            $_SESSION['username'] = $user['username']; 
+
+            // Redirect the user to the protected orders page
+            header("Location: orders.php"); 
+           
+            // Stop the script immediately after redirecting
+            exit; 
+>>>>>>> f18205ce1060b62527b55432e7ff5b0df752dc1d
 
         } else {
 
             // If login fails, display an error message
+<<<<<<< HEAD
            $error = "Invalid credentials, Please try again.";
+=======
+            $error = "Invalid credentials. Please try again!"; 
+>>>>>>> f18205ce1060b62527b55432e7ff5b0df752dc1d
         }
     }
 }

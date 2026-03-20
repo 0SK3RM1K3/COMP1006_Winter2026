@@ -15,8 +15,4 @@ try {
 //what happens if there is an error connecting 
 catch(PDOException $e) {
     die("Database connection failed: " . $e->getMessage()); 
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> f18205ce1060b62527b55432e7ff5b0df752dc1d
