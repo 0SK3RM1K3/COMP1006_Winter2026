@@ -9,6 +9,77 @@
 // 3. decode JSON results returned by the API
 // 4. loop through multiple jokes and display them
 
+//initialize search term variable to hold users' search term
+$searchTerm = "";
+
+//initialize the $jokes variable to hold jokes returned
+$jokes = [];
+
+//create a message variable to hold error/success message
+$message = "";
+
+//check that the form is submitted
+if(isset($_POST['search_jokes'])){
+
+    //grab the search term entered
+    $searchTerm = trim($_POST['search_term']);
+
+    //validate that the user entered a search term
+    if($searchTerm !== ""){
+
+        //build the URL with search term appended
+        $url = "https://icanhazdadjoke.com/search?term=" . urlencode($searchTerm);
+
+        //use headers to tell the API we want JSON returned
+        $option = [
+
+            "http" => [
+
+                "method" => "GET",
+                "header" => "Accept:application/json\r\n".
+                "User-Agent: COMP1006 Dad Joke Demo (http://localhost)\r\n"
+
+            ]
+
+        ];
+
+        //convert the options array into a stream context
+        $context = stream_context_create($option);
+
+        //send the request to the search endpoint
+        $response = file_get_contents($url, false, $context);
+
+        //check we get a response
+        if($response !== false) {
+
+            //convert the JSON response into a PHP associative response
+            $data = json_decode($response, true);
+            
+            $jokes = $data['results'];
+
+            if(count($jokes) == 0){
+
+                $message = "Sorry no jokes";
+
+            }
+
+        }
+        else {
+
+            $message = "Sorry something went wrong";
+
+        }
+
+    }
+    else {
+
+        $message = "Please enter a search term";
+
+    }
+
+}
+
+
 ?>
  <!--
         This form sends the user's search word back to this same page.
