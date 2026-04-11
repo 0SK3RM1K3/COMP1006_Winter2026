@@ -19,6 +19,10 @@
         </h1>
         <nav>
             <a href="index.php"> Home </a>
+            <a href="teamList.php"> Team List </a>
             <a href="login.php"> Login </a>
+            <a href="logout.php"> Logout </a>
         </nav>
     </header>
+
+
