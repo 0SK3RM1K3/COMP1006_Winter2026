@@ -19,6 +19,7 @@
         </h1>
         <nav>
             <a href="index.php"> Home </a>
+            <a href="stats.php"> Stats </a>
             <a href="login.php"> Login </a>
         </nav>
     </header>
