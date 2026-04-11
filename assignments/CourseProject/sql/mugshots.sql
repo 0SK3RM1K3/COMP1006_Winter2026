@@ -1,0 +1,10 @@
+CREATE TABLE mugshots (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(150) NOT NULL,
+    quote TEXT NOT NULL,
+    goals INT NOT NULL,
+    assists INT NOT NULL,
+    pm INT NOT NULL,
+    image_path VARCHAR(255),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
