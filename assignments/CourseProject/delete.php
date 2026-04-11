@@ -1,4 +1,5 @@
 <?php
+require "includes/auth.php";
 
 //connect to database
 require 'includes/connect.php';
